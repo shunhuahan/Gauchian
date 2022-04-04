@@ -53,7 +53,7 @@ class GbaCaller(GeneCaller):
         # are called close to CN2
         self.total_cn = None
         if self.gmm_call.cn is not None and self.gmm_call.cn <= 4:
-            self.total_cn = self.gmm_call.cn + 2
+            self.total_cn = self.gmm_call.cn + 2 # TODO: why?
         elif self.gmm_call.depth_value > 4.25:
             total_cn_low = int(np.floor(self.gmm_call.depth_value + 2))
             total_cn_high = int(np.ceil(self.gmm_call.depth_value + 2))
@@ -97,7 +97,7 @@ class GbaCaller(GeneCaller):
         self.call_cn("GBAdel")
         # 3. Get read counts and SNP ratios
         self.count_reads_diff_sites_and_variants()
-        self.improve_total_cn()
+        self.improve_total_cn() # TODO: need to figure out
         if self.total_cn is None:
             return self.sample_call(
                 self.normalized_depth.mad,

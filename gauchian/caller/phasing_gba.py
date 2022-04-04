@@ -94,12 +94,13 @@ class PhasingGba(Phasing):
         Assembly haplotypes for exon9-11
         """
         # starting from left
-        hap_count = extract_hap(self.haplotype_per_read, range(2, 4))
-        hap_count = filter_hap(hap_count)
-        haplotypes_to_extend = ["x" * 2 + a + "x" * 6 for a in hap_count]
+        hap_count = extract_hap(self.haplotype_per_read, range(2, 4)) # only check read support for A495P and L483P haplotypes, output is like {'CG': [1, 1], 'CT': [1]}
+        hap_count = filter_hap(hap_count) # TODO: make sure the hap has at least 2 read support, output is like {'CG': [1, 1]}
+        haplotypes_to_extend = ["x" * 2 + a + "x" * 6 for a in hap_count] # output is like {'xxCGxxxxxx': [1, 1]}
         # Extend to 5p
         matching_haplotype_groups = group_haps(self.haplotype_per_read, haplotypes_to_extend)
         haplotypes_to_extend = extend_hap_5p(matching_haplotype_groups)
+        # TODO: bug, need to remove the following two lines
         matching_haplotype_groups = group_haps(self.haplotype_per_read, haplotypes_to_extend)
         haplotypes_to_extend = extend_hap_5p(matching_haplotype_groups)
         # Extend to 3p

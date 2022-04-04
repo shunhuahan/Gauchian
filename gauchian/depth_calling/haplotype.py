@@ -311,7 +311,7 @@ def group_haps(haplotype_per_read, hap_list):
     return haplotype_groups(matching_haplotype_groups, matching_haplotype_groups_nonunique)
 
 
-def extend_hap_5p(matching_haplotype_groups, min_read=None):
+def extend_hap_5p(matching_haplotype_groups, min_read=None): # TODO: to review
     """
     Extend a haplotype on 5p based on reads
         Parameters:
@@ -326,7 +326,7 @@ def extend_hap_5p(matching_haplotype_groups, min_read=None):
     for haplotype_to_extend in matching_haplotype_groups.unique:
         if "x" in haplotype_to_extend:
             new_hap = haplotype_to_extend
-            haps = matching_haplotype_groups.unique[haplotype_to_extend]
+            haps = matching_haplotype_groups.unique[haplotype_to_extend] # that's the read haps
             pos_x = 0
             # find the first non-"x" position to start extending
             while pos_x < len(new_hap):

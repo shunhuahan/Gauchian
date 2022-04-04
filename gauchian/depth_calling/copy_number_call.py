@@ -134,7 +134,7 @@ def process_raw_call_denovo(
     return cn_prob_filtered
 
 
-def call_cn_snp(total_cn, lsnp1, lsnp2, threshold=0.6):
+def call_cn_snp(total_cn, lsnp1, lsnp2, threshold=0.6): # TODO: this uses loose cutoff, why?
     """
     Call CN for SNP sites between geneA and geneB.
     Use a loose cutoff as this is for CNV/hybrid group calling.
@@ -167,7 +167,7 @@ def call_cn_var_homo(total_cn, lsnp1, lsnp2, max_cn=None, min_read=4):
     return cn_call
 
 
-def call_cn_var(total_cn, lsnp1, lsnp2, min_read=2):
+def call_cn_var(total_cn, lsnp1, lsnp2, min_read=2): # TODO: this uses more strict cutoff and requires min read, why?
     """
     Call CN for variant sites in non-homology regions.
     """
